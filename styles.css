@@ -1,0 +1,237 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1d1d1d;
+    color: #ffffff;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #292929;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-top: 50px;
+}
+
+.logo img {
+    max-height: 150px;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    width: 100%;
+    align-items: stretch; /* Align items to stretch vertically */
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.search-bar input[type="text"] {
+    flex: 1;
+    padding: 15px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border: 1px solid #000000;
+    font-size: 18px;
+    color: #fff;
+    outline: none;
+    background-color: #292929;
+}
+
+.search-bar form {
+    display: flex;
+    width: 100%;
+    margin: 20px;
+}
+
+.search-bar button {
+    padding: 15px 16px; 
+    background-color: #007bff;
+    color: #fff;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    outline: none;
+    height: 55px;
+    border: 1px solid #000000;
+}
+
+#searchButton:active {
+    box-shadow: inset -5px -5px 5px rgba(0, 0, 0, .2);
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: #333333;
+    z-index: 1000;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.category-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.category-link {
+    flex-grow: 1;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.category-button {
+    width: 100%;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.category-button:hover {
+    background-color: #0056b3;
+}
+
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.car-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #454545;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    height: 90%;
+}
+
+.car-item-info {
+    width: 100%; /* Set a fixed width for all info fields */
+    margin-bottom: 10px; /* Add some bottom margin for spacing */
+}
+
+.car-item h2,
+.car-item p {
+    margin: 0; /* Reset margins */
+    padding: 5px 0; /* Add padding for spacing */
+    line-height: 1.5; /* Ensure consistent line height */
+}
+
+.car-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.rent-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: auto;
+    width: 100%;
+}
+
+.rent-button:hover {
+    background-color: #0056b3;
+}
+
+.rent-button.unavailable {
+    padding: 10px 20px;
+    background-color: #1d1d1d;
+    cursor: not-allowed;
+}
+
+.reservation-form, .order-form {
+    background-color: #333333;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.reservation-form label, .order-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.reservation-form input[type="text"], .reservation-form input[type="date"], .reservation-form input[type="tel"], .reservation-form input[type="email"], .reservation-form input[type="password"],
+.order-form input[type="text"], .order-form input[type="date"], .order-form input[type="tel"], .order-form input[type="email"], .order-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.reservation-form button, .order-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.reservation-form button:hover, .order-form button:hover {
+    background-color: #0056b3;
+}
+
+.confirmation {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.confirmation button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.confirmation button:hover {
+    background-color: #0056b3;
+}
+
+#suggestionBox {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+}
+
+.suggestion {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.suggestion:hover {
+    background-color: #f0f0f0;
+}
