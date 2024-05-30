@@ -29,9 +29,10 @@ body {
 .search-bar {
     display: flex;
     width: 100%;
-    align-items: stretch; /* Align items to stretch vertically */
+    align-items: stretch;
     margin-bottom: 20px;
     margin-top: 20px;
+    position: relative;
 }
 
 .search-bar input[type="text"] {
@@ -44,16 +45,18 @@ body {
     color: #fff;
     outline: none;
     background-color: #292929;
+    position: relative;
 }
 
 .search-bar form {
     display: flex;
     width: 100%;
     margin: 20px;
+    position: relative;
 }
 
 .search-bar button {
-    padding: 15px 16px; 
+    padding: 15px 16px;
     background-color: #007bff;
     color: #fff;
     border-top-right-radius: 30px;
@@ -68,7 +71,6 @@ body {
 #searchButton:active {
     box-shadow: inset -5px -5px 5px rgba(0, 0, 0, .2);
 }
-
 
 .header {
     display: flex;
@@ -220,18 +222,37 @@ body {
 
 #suggestionBox {
     position: absolute;
-    background-color: #fff;
+    top: 100%; /* Position it directly below the search input */
+    left: 0;
+    background-color: #2b2b2b;
     border: 1px solid #ccc;
-    max-height: 150px;
+    border-radius: 4px;
+    max-height: 200px;
     overflow-y: auto;
+    width: calc(100% - 91px); /* Width of the text input field */
     display: none;
+    z-index: 1000;
 }
 
-.suggestion {
-    padding: 5px;
+#suggestionBox ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#suggestionBox li {
+    padding: 8px 12px;
     cursor: pointer;
 }
 
-.suggestion:hover {
-    background-color: #f0f0f0;
+#suggestionBox li:hover {
+    background-color: #181818;
+}
+
+.suggestion-header {
+    padding: 8px 12px;
+    background-color: #2b2b2b;
+    color: #888;
+    font-weight: bold;
+    pointer-events: none;
 }

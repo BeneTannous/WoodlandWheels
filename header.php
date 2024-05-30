@@ -10,9 +10,9 @@
         <form action="search.php" method="get">
             <input type="text" id="searchInput" name="q" placeholder="Search for cars...">
             <button type="submit" id="searchButton">Search</button>
+            <div id="suggestionBox"></div>
         </form>
     </div>
-    <div id="suggestionBox"></div>
 </div>
 
-<script src="scripts/previousSearches.js" defer></script>
+<script src="scripts/autocomplete.js" defer></script>
