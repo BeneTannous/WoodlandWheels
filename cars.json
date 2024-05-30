@@ -11,7 +11,6 @@
         "quantity": 2,
         "price_per_day": 120,
         "description": "A reliable and comfortable sedan",
-        "availability": "Yes",
         "vehicle_ID": "1000000000"
     },
     {
@@ -23,10 +22,9 @@
         "mileage": 25000,
         "fuel_type": "diesel",
         "seats": 7,
-        "quantity": 3,
+        "quantity": 0,
         "price_per_day": 150,
         "description": "Spacious and powerful SUV",
-        "availability": "Yes",
         "vehicle_ID": "1000000001"
     },
     {
@@ -41,7 +39,6 @@
         "quantity": 1,
         "price_per_day": 80,
         "description": "Compact and efficient sedan",
-        "availability": "No",
         "vehicle_ID": "1000000002"
     },
     {
@@ -56,7 +53,6 @@
         "quantity": 2,
         "price_per_day": 200,
         "description": "Luxury sedan with high performance",
-        "availability": "Yes",
         "vehicle_ID": "1000000003"
     },
     {
@@ -71,7 +67,6 @@
         "quantity": 1,
         "price_per_day": 250,
         "description": "Premium SUV with advanced features",
-        "availability": "No",
         "vehicle_ID": "1000000004"
     },
     {
@@ -86,7 +81,6 @@
         "quantity": 3,
         "price_per_day": 90,
         "description": "Stylish and reliable hatchback",
-        "availability": "Yes",
         "vehicle_ID": "1000000005"
     },
     {
@@ -101,7 +95,6 @@
         "quantity": 2,
         "price_per_day": 220,
         "description": "Elegant and powerful luxury sedan",
-        "availability": "Yes",
         "vehicle_ID": "1000000006"
     },
     {
@@ -113,10 +106,9 @@
         "mileage": 30000,
         "fuel_type": "diesel",
         "seats": 8,
-        "quantity": 1,
+        "quantity": 0,
         "price_per_day": 180,
         "description": "Robust and spacious full-size SUV",
-        "availability": "No",
         "vehicle_ID": "1000000007"
     },
     {
@@ -131,7 +123,6 @@
         "quantity": 2,
         "price_per_day": 75,
         "description": "Economical and practical sedan",
-        "availability": "Yes",
         "vehicle_ID": "1000000030"
     },    
     {
@@ -146,7 +137,6 @@
         "quantity": 3,
         "price_per_day": 110,
         "description": "Comfortable and fuel-efficient sedan",
-        "availability": "Yes",
         "vehicle_ID": "1000000008"
     },
     {
@@ -161,7 +151,6 @@
         "quantity": 2,
         "price_per_day": 170,
         "description": "Off-road capable and luxurious SUV",
-        "availability": "Yes",
         "vehicle_ID": "1000000009"
     },
     {
@@ -176,7 +165,6 @@
         "quantity": 1,
         "price_per_day": 60,
         "description": "Affordable and reliable sedan",
-        "availability": "No",
         "vehicle_ID": "1000000010"
     },
     {
@@ -188,10 +176,9 @@
         "mileage": 5000,
         "fuel_type": "petrol",
         "seats": 5,
-        "quantity": 2,
+        "quantity": 0,
         "price_per_day": 210,
         "description": "Luxury sedan with advanced features",
-        "availability": "Yes",
         "vehicle_ID": "1000000011"
     },
     {
@@ -206,7 +193,6 @@
         "quantity": 3,
         "price_per_day": 130,
         "description": "Stylish and fuel-efficient SUV",
-        "availability": "Yes",
         "vehicle_ID": "1000000012"
     },
     {
@@ -221,7 +207,6 @@
         "quantity": 1,
         "price_per_day": 100,
         "description": "Compact and fun-to-drive hatchback",
-        "availability": "No",
         "vehicle_ID": "1000000013"
     },
     {
@@ -236,7 +221,6 @@
         "quantity": 2,
         "price_per_day": 180,
         "description": "Safe and luxurious sedan",
-        "availability": "Yes",
         "vehicle_ID": "1000000014"
     },
     {
@@ -251,7 +235,6 @@
         "quantity": 1,
         "price_per_day": 140,
         "description": "Versatile and reliable SUV",
-        "availability": "No",
         "vehicle_ID": "1000000015"
     },
     {
@@ -266,7 +249,6 @@
         "quantity": 3,
         "price_per_day": 70,
         "description": "Compact and stylish hatchback",
-        "availability": "Yes",
         "vehicle_ID": "1000000016"
     },
     {
@@ -281,7 +263,6 @@
         "quantity": 2,
         "price_per_day": 250,
         "description": "High-performance electric sedan",
-        "availability": "Yes",
         "vehicle_ID": "1000000017"
     },
     {
@@ -296,7 +277,6 @@
         "quantity": 1,
         "price_per_day": 300,
         "description": "Luxury SUV with off-road capability",
-        "availability": "No",
         "vehicle_ID": "1000000018"
     },
     {
@@ -308,10 +288,9 @@
         "mileage": 12000,
         "fuel_type": "petrol",
         "seats": 5,
-        "quantity": 2,
+        "quantity": 0,
         "price_per_day": 85,
         "description": "Economical and stylish hatchback",
-        "availability": "Yes",
         "vehicle_ID": "1000000019"
     },
     {
@@ -326,7 +305,6 @@
         "quantity": 3,
         "price_per_day": 190,
         "description": "Sporty and luxurious sedan",
-        "availability": "Yes",
         "vehicle_ID": "1000000020"
     },
     {
@@ -341,7 +319,6 @@
         "quantity": 1,
         "price_per_day": 160,
         "description": "Durable and reliable SUV",
-        "availability": "No",
         "vehicle_ID": "1000000021"
     },
     {
@@ -356,7 +333,6 @@
         "quantity": 3,
         "price_per_day": 65,
         "description": "Compact and trendy hatchback",
-        "availability": "Yes",
         "vehicle_ID": "1000000022"
     },
     {
@@ -371,7 +347,6 @@
         "quantity": 2,
         "price_per_day": 200,
         "description": "Luxurious and powerful sedan",
-        "availability": "Yes",
         "vehicle_ID": "1000000023"
     },
     {
@@ -386,7 +361,6 @@
         "quantity": 3,
         "price_per_day": 140,
         "description": "Reliable and stylish SUV",
-        "availability": "Yes",
         "vehicle_ID": "1000000024"
     },
     {
@@ -401,7 +375,6 @@
         "quantity": 2,
         "price_per_day": 70,
         "description": "Compact and sporty hatchback",
-        "availability": "Yes",
         "vehicle_ID": "1000000025"
     },
     {
@@ -413,10 +386,9 @@
         "mileage": 20000,
         "fuel_type": "petrol",
         "seats": 5,
-        "quantity": 1,
+        "quantity": 0,
         "price_per_day": 190,
         "description": "Stylish and luxurious sedan",
-        "availability": "No",
         "vehicle_ID": "1000000026"
     },
     {
@@ -431,7 +403,6 @@
         "quantity": 2,
         "price_per_day": 130,
         "description": "Versatile and efficient SUV",
-        "availability": "Yes",
         "vehicle_ID": "1000000027"
     },
     {
@@ -446,7 +417,6 @@
         "quantity": 3,
         "price_per_day": 75,
         "description": "Practical and economical hatchback",
-        "availability": "Yes",
         "vehicle_ID": "1000000028"
     },
     {
@@ -458,10 +428,9 @@
         "mileage": 15000,
         "fuel_type": "electric",
         "seats": 5,
-        "quantity": 3,
+        "quantity": 2,
         "price_per_day": 200,
         "description": "High-performance electric SUV",
-        "availability": "Yes",
         "vehicle_ID": "1000000029"
     }
 ]

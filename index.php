@@ -31,7 +31,7 @@ $cars = json_decode($carsJson, true);
                 <h2><?php echo $car['brand'] . ' ' . $car['model']; ?></h2>
                 <p>Year model: <?php echo  $car['year']; ?></p>
                 <p>Price per Day: $<?php echo $car['price_per_day']; ?></p>
-                <?php if ($car['availability'] == 'Yes') { ?>
+                <?php if ($car['quantity'] > 0) { ?>
                     <a href="reserve.php?id=<?php echo $car['vehicle_ID']; ?>"><button class="rent-button">Rent</button></a>
                 <?php } else { ?>
                     <button class="rent-button unavailable" disabled>Unavailable</button>

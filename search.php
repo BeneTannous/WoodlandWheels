@@ -48,7 +48,7 @@ $search_results = array_filter($cars, function($car) use ($search_query) {
                 echo "<h2>" . $car['brand'] . " " . $car['model'] . "</h2>";
                 echo "<p>Year model: " . $car['year'] . "</p>";
                 echo "<p>Price per Day: $" . $car['price_per_day'] . "</p>";
-                if ($car['availability'] == 'Yes') {
+                if ($car['quantity'] > 0) {
                     echo "<a href='reserve.php?id=" . $car['vehicle_ID'] . "'><button class='rent-button'>Rent</button></a>";
                 } else {
                     echo "<button class='rent-button unavailable' disabled>Unavailable</button>";

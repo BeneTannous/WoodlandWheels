@@ -38,7 +38,7 @@ $filtered_cars = array_filter($cars, function($car) use ($type, $brand) {
                 echo "<p>Year model: " . $car['year'] . "</p>";
                 echo "<p>Price per Day: $" . $car['price_per_day'] . "</p>";
                 echo "</div>";
-                if ($car['availability'] == 'Yes') {
+                if ($car['quantity'] > 0) {
                     echo "<p>Availability: Yes</p>";
                     echo "<a href='reserve.php?id=" . $car['vehicle_ID'] . "'><button class='rent-button'>Rent</button></a>";
                 } else {
