@@ -1,43 +1,35 @@
 <?php
-session_start();
+$carsJson = file_get_contents('cars.json');
+$cars = json_decode($carsJson, true);
 
-$cars = json_decode(file_get_contents('cars.json'), true);
+if (isset($_GET['id'])) {
+    $car_id = $_GET['id'];
+} elseif (isset($_COOKIE['reserved_vehicle_id'])) {
+    $car_id = $_COOKIE['reserved_vehicle_id'];
+}
 
-if (isset($_GET['vehicle_ID'])) {
-    $car_id = $_GET['vehicle_ID'];
-    $car = array_filter($cars, function($c) use ($car_id) {
-        return $c['vehicle_ID'] == $car_id;
-    });
-    $car = reset($car);
-    
-    if (!$car) {
-        die("Car not found.");
+$carFound = false;
+
+if (isset($car_id)) {
+    // Search for the car with the matching ID
+    foreach ($cars as $car) {
+        if ($car['vehicle_ID'] == $car_id) {
+            // Found the matching car, assign it to $selected_car
+            $selected_car = $car;
+            $carFound = true;
+            break; // Exit the loop once the car is found
+        }
     }
-
-    $_SESSION['reservation'] = $car;
-} elseif (isset($_POST['reserve'])) {
-    $_SESSION['reservation'] = array(
-        'vehicle_ID' => $_POST['vehicle_ID'],
-        'model' => $_POST['model'],
-        'price_per_day' => $_POST['price_per_day'],
-        'start_date' => $_POST['start_date'],
-        'end_date' => $_POST['end_date']
-    );
 }
 
-$reservation = isset($_SESSION['reservation']) ? $_SESSION['reservation'] : null;
-
-if (!$reservation) {
-    die("No car selected for reservation.");
+// Redirect to index.php if the car is not found
+if (!$carFound) {
+    header("Location: index.php");
+    exit();
 }
 
-$total_price = 0;
-if (isset($reservation['start_date']) && isset($reservation['end_date'])) {
-    $start_date = new DateTime($reservation['start_date']);
-    $end_date = new DateTime($reservation['end_date']);
-    $interval = $start_date->diff($end_date);
-    $days = $interval->days + 1;
-    $total_price = $reservation['price_per_day'] * $days;
+if ($carFound) {
+    setcookie("reserved_vehicle_id", $car_id, time() + (86400 * 30), "/"); // 86400 = 1 day
 }
 ?>
 
@@ -46,7 +38,7 @@ if (isset($reservation['start_date']) && isset($reservation['end_date'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserve Car - Woodland Wheels</title>
+    <title>Reservation - Woodland Wheels</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -56,34 +48,68 @@ if (isset($reservation['start_date']) && isset($reservation['end_date'])) {
     <?php include 'header.php'; ?>
 
     <div class="heading">
-        <h1>Reserve Car</h1>
+        <h1>Reservation</h1>
     </div>
 
+    <div class="reserving-car-details">
+    <!-- Display car information -->
+        <?php if(isset($selected_car)) { ?>
+            <div class="reserving-car-item">
+                <div class="reserving-car-image">
+                    <img src="images/<?php echo $selected_car['image']; ?>" alt="<?php echo $selected_car['model']; ?>">
+                </div>
+                <div class="reserving-car-info">
+                    <h2><?php echo $selected_car['brand'] . ' ' . $selected_car['model']; ?></h2>
+                    <p id="ppd">Price per Day: $<?php echo $selected_car['price_per_day']; ?></p>
+                    <p><?php echo $selected_car['description']; ?></p>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+
+
     <div class="reservation-form">
-        <form action="reserve.php" method="post">
-            <input type="hidden" name="vehicle_ID" value="<?php echo $reservation['vehicle_ID']; ?>">
-            <input type="hidden" name="model" value="<?php echo $reservation['model']; ?>">
-            <input type="hidden" name="price_per_day" value="<?php echo $reservation['price_per_day']; ?>">
-
-            <label for="model">Car Model:</label>
-            <input type="text" id="model" name="model" value="<?php echo $reservation['model']; ?>" disabled>
-
-            <label for="price_per_day">Price per Day:</label>
-            <input type="text" id="price_per_day" name="price_per_day" value="<?php echo $reservation['price_per_day']; ?>" disabled>
+        <form action="submit_reservation.php" method="post">
+            <!-- Reservation form fields -->
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" value="1" min="1" required>
 
             <label for="start_date">Start Date:</label>
-            <input type="date" id="start_date" name="start_date" required>
+            <input type="date" id="start_date" name="start_date" onchange="validateStartDate()" required>
 
             <label for="end_date">End Date:</label>
-            <input type="date" id="end_date" name="end_date" required>
+            <input type="date" id="end_date" name="end_date" onchange="validateEndDate()"required>
 
-            <p>Total Price: $<?php echo $total_price; ?></p>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
 
-            <button type="submit" name="reserve">Reserve</button>
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="license">Do you have a valid driver's license?</label>
+            <select id="license" name="license" required>
+                <option disabled selected>Please select:</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <!-- Real-time rental cost calculation -->
+            <p id="rental_cost">Rental Cost: $0.00</p>
+
+            <button type="submit">Submit</button>
+            <button type="button" onclick="cancelReservation()">Cancel</button>
         </form>
     </div>
 
 </div>
+
+<script src="scripts/validateDates.js"></script>
+<script src="scripts/updateCost.js"></script>
+<script src="scripts/validateReservationDetails.js"></script>
+<script src="scripts/cancelReservation.js"></script>
 
 </body>
 </html>

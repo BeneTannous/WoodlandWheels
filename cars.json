@@ -30,7 +30,7 @@
         "vehicle_ID": "1000000001"
     },
     {
-        "type": "hatchback",
+        "type": "sedan",
         "brand": "Ford",
         "model": "Focus",
         "year": 2015,
@@ -40,7 +40,7 @@
         "seats": 5,
         "quantity": 1,
         "price_per_day": 80,
-        "description": "Compact and efficient hatchback",
+        "description": "Compact and efficient sedan",
         "availability": "No",
         "vehicle_ID": "1000000002"
     },

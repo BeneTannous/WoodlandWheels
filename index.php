@@ -18,14 +18,6 @@ $cars = json_decode($carsJson, true);
 
     <?php include 'header.php'; ?>
 
-    <!-- Car Categories -->
-    <div class="category-buttons">
-        <a class="category-link" href="category.php?type=sedan"><button class="category-button">Sedan</button></a>
-        <a class="category-link" href="category.php?type=hatchback"><button class="category-button">Hatchback</button></a>
-        <a class="category-link" href="category.php?type=SUV"><button class="category-button">SUV</button></a>
-        <!-- Add more categories as needed -->
-    </div>
-
     <!-- Heading -->
     <div class="heading">
         <h1>Welcome to Woodland Wheels!</h1>
@@ -44,6 +36,7 @@ $cars = json_decode($carsJson, true);
                 <?php } else { ?>
                     <button class="rent-button unavailable" disabled>Unavailable</button>
                 <?php } ?>
+                <div class="description-overlay"><?php echo $car['description']; ?></div> <!-- Description overlay -->
             </div>
         <?php } ?>
     </div>

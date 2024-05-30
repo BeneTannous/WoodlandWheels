@@ -3,19 +3,21 @@ $cars = json_decode(file_get_contents('cars.json'), true);
 $search_query = isset($_GET['q']) ? $_GET['q'] : '';
 
 $search_results = array_filter($cars, function($car) use ($search_query) {
-    // Iterate over each car value and check if it contains the search query
-    foreach ($car as $key => $value) {
-        // Skip the 'vehicle_ID' key
-        if ($key === 'vehicle_ID') continue;
-        
-        // Check if the current value contains the search query
-        if (stripos($value, $search_query) !== false) {
-            return true; // Return true if any value matches the search query
+    // Combine relevant fields into a single string
+    $car_string = strtolower($car['brand'] . ' ' . $car['model'] . ' ' . $car['year'] . ' ' . $car['price_per_day'] . ' ' . $car['type'] . ' ' . $car['fuel_type'] . ' ' . $car['description']);
+    
+    // Split the search query into words
+    $query_words = array_map('strtolower', explode(' ', $search_query));
+    
+    // Check if all query words are present in the car string
+    foreach ($query_words as $word) {
+        if (stripos($car_string, $word) === false) {
+            return false;
         }
     }
-    return false; // Return false if no match is found
+    
+    return true;
 });
-
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +53,7 @@ $search_results = array_filter($cars, function($car) use ($search_query) {
                 } else {
                     echo "<button class='rent-button unavailable' disabled>Unavailable</button>";
                 }
+                echo "<div class='description-overlay'>" . $car['description'] . "</div>"; // Description overlay
                 echo "</div>";
             }                      
             echo '</div>';

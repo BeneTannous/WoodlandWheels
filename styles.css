@@ -1,4 +1,3 @@
-/* styles.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -81,6 +80,7 @@ body {
     background-color: #333333;
     z-index: 1000;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+    padding-right: 10px;
 }
 
 .category-buttons {
@@ -89,6 +89,7 @@ body {
     gap: 10px;
     margin-top: 10px;
     width: 100%;
+    transition: 0.3s ease;
 }
 
 .category-link {
@@ -105,9 +106,26 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: 0.3s ease;
 }
 
 .category-button:hover {
+    background-color: #0056b3;
+}
+
+.reservation-button {
+    width: 100%;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: auto;
+    transition: 0.3s ease;
+}
+
+.reservation-button:hover {
     background-color: #0056b3;
 }
 
@@ -118,6 +136,7 @@ body {
 }
 
 .car-item {
+    position: relative; /* Add relative positioning */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -126,6 +145,31 @@ body {
     border-radius: 5px;
     text-align: center;
     height: 90%;
+    transition: 0.3s ease;
+}
+
+.car-item .description-overlay {
+    opacity: 0; /* Initially hide the description overlay */
+    position: absolute;
+    top: 0; /* Position it at the top of the car item */
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    transition: opacity 0.3s ease;
+    box-sizing: border-box;
+    z-index: 1; /* Ensure the overlay appears above other content */
+}
+
+.car-item:hover {
+    background-color: #3c424b;
+    transition: 0.3s ease;
+}
+
+.car-item:hover .description-overlay {
+    opacity: 1; /* Show the description overlay on hover */
 }
 
 .car-item-info {
@@ -135,9 +179,9 @@ body {
 
 .car-item h2,
 .car-item p {
-    margin: 0; /* Reset margins */
-    padding: 5px 0; /* Add padding for spacing */
-    line-height: 1.5; /* Ensure consistent line height */
+    margin: 0;
+    padding: 5px 0;
+    line-height: 1.5;
 }
 
 .car-item img {
@@ -146,15 +190,22 @@ body {
     border-radius: 5px;
 }
 
-.rent-button {
+.rent-button,
+.rent-button.unavailable {
     padding: 10px 20px;
-    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     margin-top: auto;
     width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.rent-button {
+    background-color: #007bff;
+    transition: 0.3s ease;
 }
 
 .rent-button:hover {
@@ -162,9 +213,20 @@ body {
 }
 
 .rent-button.unavailable {
-    padding: 10px 20px;
     background-color: #1d1d1d;
     cursor: not-allowed;
+}
+
+.reservation-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Center align the content horizontally */
+}
+
+.reservation-form label {
+    color: #ffffff;
 }
 
 .reservation-form, .order-form {
@@ -180,26 +242,72 @@ body {
     font-weight: bold;
 }
 
-.reservation-form input[type="text"], .reservation-form input[type="date"], .reservation-form input[type="tel"], .reservation-form input[type="email"], .reservation-form input[type="password"],
-.order-form input[type="text"], .order-form input[type="date"], .order-form input[type="tel"], .order-form input[type="email"], .order-form input[type="password"] {
+.reservation-form input[type="number"],
+.reservation-form input[type="date"],
+.reservation-form input[type="text"],
+.reservation-form input[type="tel"],
+.reservation-form input[type="email"],
+.reservation-form select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 10px; /* Padding for comfortable input */
+    margin-bottom: 20px; /* Spacing between inputs */
+    border: 1px solid #555555; /* Border color to match the theme */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #111111; /* Background color to match the theme */
+    color: #ffffff; /* Text color */
+    font-size: 16px; /* Font size for readability */
 }
 
-.reservation-form button, .order-form button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.reservation-form input[type="number"]:focus,
+.reservation-form input[type="date"]:focus,
+.reservation-form input[type="text"]:focus,
+.reservation-form input[type="tel"]:focus,
+.reservation-form input[type="email"]:focus,
+.reservation-form select:focus {
+    border-color: #007bff; /* Border color on focus */
+    outline: none; /* Remove default outline */
 }
 
-.reservation-form button:hover, .order-form button:hover {
-    background-color: #0056b3;
+.reservation-form button[type="submit"] {
+    padding: 10px 20px; /* Padding for buttons */
+    background-color: #007bff; /* Background color to match the theme */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    margin-top: 20px; /* Add some top margin for spacing */
+    transition: 0.3s ease;
+}
+
+.reservation-form button[type="button"] {
+    padding: 10px 20px; /* Padding for buttons */
+    background-color: #860000; /* Background color to match the theme */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    margin-top: 20px; /* Add some top margin for spacing */
+    transition: 0.3s ease;
+}
+
+.reservation-form button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker background on hover */
+}
+
+.reservation-form button[type="button"]:hover {
+    background-color: #3b0000; /* Darker background on hover */
+}
+
+.reservation-form button[type="submit"]:disabled {
+    background-color: #999; /* Change background color to gray */
+    color: #ccc; /* Change text color to light gray */
+    cursor: not-allowed; /* Change cursor to not-allowed */
+}
+
+#rental_cost {
+    color: #ffffff; /* Text color for rental cost */
+    font-weight: bold; /* Bold text */
+    margin-top: 20px; /* Spacing above the rental cost */
 }
 
 .confirmation {
@@ -207,25 +315,12 @@ body {
     margin-top: 20px;
 }
 
-.confirmation button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.confirmation button:hover {
-    background-color: #0056b3;
-}
-
 #suggestionBox {
     position: absolute;
     top: 100%; /* Position it directly below the search input */
     left: 0;
     background-color: #2b2b2b;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
     border-radius: 4px;
     max-height: 200px;
     overflow-y: auto;
@@ -243,10 +338,12 @@ body {
 #suggestionBox li {
     padding: 8px 12px;
     cursor: pointer;
+    transition: 0.3s ease;
 }
 
 #suggestionBox li:hover {
     background-color: #181818;
+    transition: 0.3s ease;
 }
 
 .suggestion-header {
@@ -255,4 +352,75 @@ body {
     color: #888;
     font-weight: bold;
     pointer-events: none;
+}
+
+.category-dropdown {
+    position: relative;
+    display: inline-block;
+    transition: 0.3s ease;
+}
+
+.category-dropdown-toggle {
+    background-color: #555555;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 8px 16px;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.category-dropdown-toggle:hover {
+    background-color: #0056b3;
+}
+
+.category-buttons {
+    display: none;
+    position: absolute;
+    background-color: #333333;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    transition: 0.3s ease;
+}
+
+.category-buttons a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s ease;
+}
+
+.category-buttons a:hover {
+    background-color: #3c424b;
+    transition: 0.3s ease;
+}
+
+.category-dropdown.active .category-buttons {
+    display: block;
+    transition: 0.3s ease;
+}
+
+.reserving-car-item {
+    display: flex;
+}
+
+.reserving-car-image {
+    flex: 1;
+    padding-left: 15%;
+}
+
+.reserving-car-image img {
+    width: 100%;
+    height: auto;
+}
+
+.reserving-car-info {
+    flex: 1;
+    padding-left: 50px; /* Add some spacing between the image and the details */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

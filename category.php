@@ -45,6 +45,7 @@ $filtered_cars = array_filter($cars, function($car) use ($type, $brand) {
                     echo "<p>Availability: No</p>";
                     echo "<button class='rent-button unavailable' disabled>Unavailable</button>";
                 }
+                echo "<div class='description-overlay'>" . $car['description'] . "</div>"; // Description overlay
                 echo "</div>";
             }         
             echo '</div>';

@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let searches = getPreviousSearches();
         if (!searches.includes(query)) {
             searches.push(query);
+            if (searches.length > 3) {
+                searches = searches.slice(-3); // Keep only the last 3 searches
+            }
             localStorage.setItem('previousSearches', JSON.stringify(searches));
         }
     };
@@ -70,8 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show the suggestion box if there are suggestions
         if (recentSearches.length > 0 || suggestions.length > 0) {
             suggestionBox.style.display = 'block';
+            searchInput.style.borderBottomLeftRadius = '0px';
         } else {
             suggestionBox.style.display = 'none';
+            searchInput.style.borderBottomLeftRadius = '30px';
         }
     };
 

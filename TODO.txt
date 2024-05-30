@@ -1,0 +1,5 @@
+re-check to see if car is still available
+order confirmation
+add order details to orders table
+change availablility checking to be a quantity in cars.json (quantity > 0 = car is available)
+deploy website (remember to change servername in config.php)!
