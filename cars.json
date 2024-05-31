@@ -78,7 +78,7 @@
         "mileage": 12000,
         "fuel_type": "petrol",
         "seats": 5,
-        "quantity": 3,
+        "quantity": 2,
         "price_per_day": 90,
         "description": "Stylish and reliable hatchback",
         "vehicle_ID": "1000000005"
@@ -124,7 +124,7 @@
         "price_per_day": 75,
         "description": "Economical and practical sedan",
         "vehicle_ID": "1000000030"
-    },    
+    },
     {
         "type": "sedan",
         "brand": "Nissan",
@@ -414,7 +414,7 @@
         "mileage": 15000,
         "fuel_type": "petrol",
         "seats": 5,
-        "quantity": 3,
+        "quantity": 2,
         "price_per_day": 75,
         "description": "Practical and economical hatchback",
         "vehicle_ID": "1000000028"
@@ -428,7 +428,7 @@
         "mileage": 15000,
         "fuel_type": "electric",
         "seats": 5,
-        "quantity": 2,
+        "quantity": 3,
         "price_per_day": 200,
         "description": "High-performance electric SUV",
         "vehicle_ID": "1000000029"

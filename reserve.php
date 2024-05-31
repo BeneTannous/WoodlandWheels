@@ -13,7 +13,7 @@ $carFound = false;
 if (isset($car_id)) {
     // Search for the car with the matching ID
     foreach ($cars as $car) {
-        if ($car['vehicle_ID'] == $car_id) {
+        if ($car['vehicle_ID'] == $car_id && $car['quantity'] > 0) {
             // Found the matching car, assign it to $selected_car
             $selected_car = $car;
             $carFound = true;
@@ -24,9 +24,11 @@ if (isset($car_id)) {
 
 // Redirect to index.php if the car is not found
 if (!$carFound) {
-    header("Location: index.php");
+    echo '<script>alert("Sorry, that car is currently unavailable for reservation.");</script>';
+    echo '<script>window.location.replace("index.php");</script>';
     exit();
 }
+
 
 if ($carFound) {
     setcookie("reserved_vehicle_id", $car_id, time() + (86400 * 30), "/"); // 86400 = 1 day
@@ -69,10 +71,10 @@ if ($carFound) {
 
 
     <div class="reservation-form">
-        <form action="submit_reservation.php" method="post">
+        <form action="submitReservation.php" method="post">
             <!-- Reservation form fields -->
             <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+            <input type="number" id="quantity" name="quantity" value="1" min="1" max="<?php echo $selected_car['quantity']; ?>" required oninput="checkQuantityValidity()">
 
             <label for="start_date">Start Date:</label>
             <input type="date" id="start_date" name="start_date" onchange="validateStartDate()" required>
@@ -110,6 +112,7 @@ if ($carFound) {
 <script src="scripts/updateCost.js"></script>
 <script src="scripts/validateReservationDetails.js"></script>
 <script src="scripts/cancelReservation.js"></script>
+<script src="scripts/checkQuantityValidity.js"></script>
 
 </body>
 </html>

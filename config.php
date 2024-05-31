@@ -1,6 +1,6 @@
 <?php
-$servername = "awseb-e-web4zrhywf-stack-awsebrdsdatabase-omurr329xftc.couwo9et0wjo.us-east-1.rds.amazonaws.com:3306";
-$username = "root";
-$password = "";
+$servername = "awseb-e-4mcv4aawys-stack-awsebrdsdatabase-v5qw9ilvhjtp";
+$username = "moose";
+$password = "moosepass";
 $dbname = "assignment_2";
 ?>

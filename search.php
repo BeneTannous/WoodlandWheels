@@ -2,23 +2,47 @@
 $cars = json_decode(file_get_contents('cars.json'), true);
 $search_query = isset($_GET['q']) ? $_GET['q'] : '';
 
-$search_results = array_filter($cars, function($car) use ($search_query) {
+// Function to calculate Levenshtein distance
+function levenshtein_compare($str1, $str2) {
+    return levenshtein(strtolower($str1), strtolower($str2));
+}
+
+$search_results = [];
+
+// Loop through each car to find close matches
+foreach ($cars as $car) {
     // Combine relevant fields into a single string
     $car_string = strtolower($car['brand'] . ' ' . $car['model'] . ' ' . $car['year'] . ' ' . $car['price_per_day'] . ' ' . $car['type'] . ' ' . $car['fuel_type'] . ' ' . $car['description']);
     
-    // Split the search query into words
-    $query_words = array_map('strtolower', explode(' ', $search_query));
-    
-    // Check if all query words are present in the car string
-    foreach ($query_words as $word) {
-        if (stripos($car_string, $word) === false) {
-            return false;
+    // Check if the search query exactly matches any part of the car string
+    if (stripos($car_string, $search_query) !== false) {
+        $search_results[] = $car;
+    }
+}
+
+// If no exact matches found, consider close matches
+if (empty($search_results)) {
+    // Array to store close matches
+    $close_matches = [];
+
+    foreach ($cars as $car) {
+        // Calculate Levenshtein distance for each car brand and model
+        $distance_brand = levenshtein_compare($search_query, $car['brand']);
+        $distance_model = levenshtein_compare($search_query, $car['model']);
+
+        // If distance is within a threshold (e.g., 3) for either brand or model, consider it a close match
+        if ($distance_brand <= 3 || $distance_model <= 3) {
+            $close_matches[] = $car;
         }
     }
-    
-    return true;
-});
+
+    // Use close matches if found
+    if (!empty($close_matches)) {
+        $search_results = $close_matches;
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
