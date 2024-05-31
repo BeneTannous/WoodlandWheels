@@ -20,14 +20,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm_order'])) {
     $stmt->bind_param('si', $status_confirmed, $order_id);
 
     if ($stmt->execute()) {
+        $carJson = file_get_contents('cars.json');
+        $cars = json_decode($carJson, true);
+
+        // Fetch the order details from the database
+        $stmt_order = $conn->prepare('SELECT * FROM orders WHERE order_id = ?');
+        $stmt_order->bind_param('i', $order_id);
+        $stmt_order->execute();
+        $result_order = $stmt_order->get_result();
+        $order = $result_order->fetch_assoc();
+
+        // Find the corresponding car in the JSON data and update quantity
+        foreach ($cars as &$car) {
+            if ($car['vehicle_ID'] == $order['vehicle_ID']) {
+                $quantity = $order['quantity']; // Define $quantity here
+                $car['quantity'] -= $quantity;
+                break;
+            }
+        }
+        file_put_contents('cars.json', json_encode($cars, JSON_PRETTY_PRINT));
+
         echo '<script>alert("Order confirmed!");</script>';
         echo '<script>window.location.replace("index.php");</script>';
     } else {
         echo 'Error: ' . $stmt->error;
     }
 
-    // Close the statement
+    // Close the statements
     $stmt->close();
+    $stmt_order->close();
 }
 
 // Retrieve order details from the database
@@ -78,7 +99,6 @@ if (isset($_GET['order_id'])) {
                     </div>
                     <div class="reserving-car-info">
                         <div class="reservation-form">
-                            <p>Vehicle ID: <?php echo $order['vehicle_ID']; ?></p>
                             <p>User Name: <?php echo $order['user_name']; ?></p>
                             <p>User Email: <?php echo $order['user_email']; ?></p>
                             <p>Rent Start Date: <?php echo $order['rent_start_date']; ?></p>

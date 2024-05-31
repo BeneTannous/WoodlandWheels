@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($selected_car) {
         $price_per_day = $selected_car['price_per_day'];
-        $days = (strtotime($rent_end_date) - strtotime($rent_start_date)) / (60 * 60 * 24) + 1;
+        $days = (strtotime($rent_end_date) - strtotime($rent_start_date)) / (60 * 60 * 24);
         $price = $days * $price_per_day * $quantity;
 
         // Prepare and bind the SQL statement
@@ -41,15 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Execute the SQL statement
         if ($stmt->execute()) {
-            // Reduce the quantity in the cars.json
-            foreach ($cars as &$car) {
-                if ($car['vehicle_ID'] == $vehicle_ID) {
-                    $car['quantity'] -= $quantity;
-                    break;
-                }
-            }
-            file_put_contents('cars.json', json_encode($cars, JSON_PRETTY_PRINT));
-
             // Redirect to the confirmReservation page with the order_id
             $order_id = $stmt->insert_id;
             echo '<script>window.location.replace("confirmReservation.php?order_id=' . $order_id . '");</script>';
